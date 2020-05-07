@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Smash Bros. Ultimate - Stage Striker</title>
+    <script src="StageStrikerLite.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="Oberlin%20Smash%20Logo.png">
+</head>
+
+<body>
+    <div class="sticky" id="Scoreboard" style="display: none" align="middle">
+        <div class="column2" style="background-image: url('Panel.png'); background-position: center; background-size: cover">
+            <p id="p1_name" align="middle-top" style="font-size:20px; height: 10%"></p>
+        </div>
+
+        <div class="column2">
+            <p class="paneled" id="curr_score" align="middle" style="height: 5%"></p>
+            <p class="paneled" id="game_num" align="middle" style="height: 5%"></p>
+        </div>
+
+        <div class="column2" style="background-image: url('Panel.png'); background-position: center; background-size: cover">
+            <p id="p2_name" align="middle-top" style="font-size:20px; height: 10%"></p>
+        </div>
+    </div>
+
+    <div id="player_entry" align="middle">
+        <div class="column">
+            <p class="paneled" style="font-size:50px;">Player 1:</p>
+            <input id="Player1" type="text" style="font-size: 30pt; text-align: center;"/>
+
+        </div>
+        <div class="column">
+            <p class="paneled" style="font-size:50px;" >Player 2:</p>
+            <input id="Player2" type="text" style="font-size: 30pt; text-align: center;"/>
+        </div>
+        <div id="BO_buttons">
+            <button id="BO3" class="button" onclick="BO(3)">Best Of 3</button>
+            <button id="BO5" class="button" onclick="BO(5)">Best Of 5</button>
+            <button id="BO7" class="button" onclick="BO(7)">Best Of 7</button>
+        </div>
+
+        <br>
+        <div id="stagelist_buttons">
+            <button id="tbh9" class="button" onclick="enter_rules(1)">The Big House 9 Stage List</button>
+            <button id="evo2020" class="button" onclick="enter_rules(2)">EVO 2020 Stage List</button>
+        </div>
+        <br>
+        <button id="dsr" class="button" onclick="dsr_toggle()">No DSR</button>
+        <br>
+        <br>
+        <input id="name_button" class="button2" type="button" onclick="PlayerEntry()" value="Submit"/>
+        <br>
+    </div>
+
+    <div id="RPS" style="display: none;background-image: url('Panel.png'); background-position: center; background-size: cover;" align="middle" >
+        <p align="middle" style="font-size:50px;"> Who won Rock-Paper-Scissors? </p>
+        <div class="column">
+            <button id="p1_rps" class="button2" onclick="RPS(1)"></button>
+<!--            <input type="button" id="p1_rps" onclick="RPS(1)">-->
+        </div>
+        <div class="column">
+            <button id="p2_rps" class="button2" onclick="RPS(2)"></button>
+<!--            <input type="button" id="p2_rps" onclick="RPS(2)">-->
+        </div>
+        <!--        Who Won RPS?        -->
+    </div>
+
+    <div id="Stages" style="display: none; padding-top: 5%;" align="middle" width="100%">
+        <div style="background-image: url('Panel.png'); background-position: center; background-size: cover;" align="middle">
+            <p id="stage_prompt" style="font-size:35px;"></p>
+        </div>
+        <img id="battlefield"       src="stage/Battlefield.png" onclick="Strike('battlefield')" height="20%" width="20%">
+        <img id="finaldestination"  src="stage/Final%20Destination.jpg" onclick="Strike('finaldestination')" height="20%" width="20%">
+        <img id="smashville"        src="stage/Smashville.png" onclick="Strike('smashville')" height="20%" width="20%">
+        <img id="townandcity"       src="stage/Town%20and%20City.png" onclick="Strike('townandcity')" height="20%" width="20%">
+        <img id="pokemonstadium2"   src="stage/Pokemon%20Stadium%202.png" onclick="Strike('pokemonstadium2')" height="20%" width="20%">
+        <img id="lylatcruise" src="stage/Lylat%20Cruise.jpg" onclick="Strike('lylatcruise')" style="display: none" height="20%" width="20%">
+        <img id="yoshisstory" src="stage/Yoshi's%20Story.png" onclick="Strike('yoshisstory')" style="display: none" height="20%" width="20%">
+        <img id="kalospokemonleague" src="stage/Kalos%20Pokemon%20League.png" onclick="Strike('kalospokemonleague')" style="display: none" height="20%" width="20%">
+        <img id="unovapokemonleague" src="stage/Unova%20Pokemon%20League.png" onclick="Strike('unovapokemonleague')" style="display: none" height="20%" width="20%">
+    </div>
+
+    <div class="content" id="Character Selection" style="display: none" align="middle" width="100%">
+        <div class="row" align="middle" width="100%">
+            <img id="chosen_stage" align="middle">
+        </div>
+    </div>
+
+    <div id="score_report" style="display: none" align="middle" width="100%">
+        <div class="column2">
+            <button id="p1W" class="button" onclick="reportWinner(1)"></button>
+        </div>
+        <div class="column2">
+            <p class="paneled" id="report_prompt"></p>
+        </div>
+        <div class="column2">
+            <button id="p2W" class="button" onclick="reportWinner(2)"></button>
+        </div>
+    </div>
+    <div style="display: inline-grid; padding-top: 5%;" id="results" align="middle">
+        <div class="frow">
+            <img id="p1_g1c" style="display: none;>
+            <img id="stage_g1" style="display: none;>
+            <img id="p2_g1c" style="display: none;>
+        </div>
+
+        <div class="frow">
+            <img id="p1_g2c" style="display: none" >
+            <img id="stage_g2" style="display: none">
+            <img id="p2_g2c" style="display: none" >
+        </div>
+
+        <div class="frow">
+            <img id="p1_g3c" style="display: none" >
+            <img id="stage_g3" style="display: none" >
+            <img id="p2_g3c" style="display: none" >
+        </div>
+
+        <div class="frow">
+            <img id="p1_g4c" style="display: none" >
+            <img id="stage_g4" style="display: none" >
+            <img id="p2_g4c" style="display: none" >
+        </div>
+
+        <div class="frow">
+            <img id="p1_g5c" style="display: none" >
+            <img id="stage_g5" style="display: none" >
+            <img id="p2_g5c" style="display: none" >
+        </div>
+
+        <div class="frow">
+            <img id="p1_g6c" style="display: none" >
+            <img id="stage_g6" style="display: none" >
+            <img id="p2_g6c" style="display: none" >
+        </div>
+
+        <div class="frow">
+            <img id="p1_g7c" style="display: none" >
+            <img id="stage_g7" style="display: none" >
+            <img id="p2_g7c" style="display: none" >
+        </div>
+    </div>
+
+    <div id="footer" class="footer">
+        Stage Striker Lite created by Lucky "<a target="_blank" href="http://www.luckstruck9.com">Luckstruck9</a>" Lai for <a target="_blank" href="https://sites.google.com/view/OberlinSmash">Oberlin Smash</a>
+        <br>
+        If you have time, please fill out the <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfZD7XnL3xeDMXhHxf56-LF8kcwkxuVuJ2b70S7gKJpGqNKRA/viewform">Feedback Form</a>
+    </div>
+</body>
+</html>
